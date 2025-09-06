@@ -14,31 +14,22 @@
 
   <img src="./assets/logo.svg" alt="Vue logo" width="100px" height="100px">
 
-  <div class="red" :style="style">
-    <img src="./assets/room0.jpg" class="room-img">
-    <h4 @click="모달창열렸니=true">{{ products[0] }}</h4>
-    <p>XX만원</p>
-    <button @click="increase(0)">허위매몰신고</button> <span>신고수 : {{ 신고수[0] }}</span>
-  </div>
-  <div class="red" :style="style">
-    <img src="./assets/room1.jpg" class="room-img">
-    <h4>{{ products[1] }}</h4>
-    <p>XX만원</p>
-    <button @click="increase(1)">허위매몰신고</button> <span>신고수 : {{ 신고수[1] }}</span>
-  </div>
-  <div class="red" :style="style">
-    <img src="./assets/room2.jpg" class="room-img">
-    <h4>{{ products[2] }}</h4>
-    <p>XX만원</p>
-    <button @click="increase(2)">허위매몰신고</button> <span>신고수 : {{ 신고수[2] }}</span>
+  <div class="red" :style="style" v-for="(room,i) in 원룸들" :key="i">
+    <img :src="원룸들[i].image" class="room-img">
+    <h4 @click="모달창열렸니=true">{{ 원룸들[i].title }}</h4>
+    <p>{{ 원룸들[i].price }}만원</p>
   </div>
 </template>
 
 <script>
+
+import data from './assets/oneroom.js';
+
 export default {
   name : 'App',
   data(){
     return {
+      원룸들 : data,
       모달창열렸니 : false,
       신고수 : [0, 0, 0],
       style : 'color : blue',
