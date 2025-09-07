@@ -4,7 +4,7 @@
     <a v-for="작명 in 메뉴들" :key="작명">{{ 작명 }}</a>
   </div>
 
-  <Discount/>
+  <Discount v-if="showDiscount" :discountRate="discountRate"/>
 
   <button @click="priceSort">가격순정렬</button>
   <button @click="priceSort_">가격역순 정렬</button>
@@ -32,6 +32,8 @@ export default {
   name : 'App',
   data(){
     return {
+      showDiscount : true,
+      discountRate : 30,
       원룸들오리지널 : [...data],
       원룸들 : data,
       모달창열렸니 : false,
@@ -65,6 +67,14 @@ export default {
       this.원룸들 = [...this.원룸들오리지널];
     }
   },
+
+  mounted(){
+    var interval = setInterval(()=> {
+      this.discountRate -= 10;
+      if (this.discountRate <= 0) clearInterval(interval);
+    }, 1000);
+  },
+
   components : {
     Discount,
     Modal,

@@ -31,6 +31,12 @@ export default {
         모달창열렸니 : Boolean,
         원룸들 : Array,
         누른거 : Number
+    },
+    beforeUpdate() {
+        if (this.month == 2) {
+            alert('2개월은 너무 적음.. 안팝니다');
+            this.month = 3;
+        }
     }
 }
 </script>
