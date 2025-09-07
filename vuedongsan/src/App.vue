@@ -4,15 +4,12 @@
     <a v-for="작명 in 메뉴들" :key="작명">{{ 작명 }}</a>
   </div>
   
-  <Modal/>
+  <Modal :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"/>
 
   <img src="./assets/logo.svg" alt="Vue logo" width="100px" height="100px">
 
-  <div class="red" :style="style" v-for="(room,i) in 원룸들" :key="i">
-    <img :src="room.image" class="room-img">
-    <h4 @click="모달창열렸니=true; 누른거=i">{{ room.title }}</h4>
-    <p>{{ room.price }}원</p>
-  </div>
+  <Card v-for="(room,i) in 원룸들" :key="i" :room="room" :i="i"/>
+
 </template>
 
 <script>
@@ -20,6 +17,7 @@
 import data from './assets/oneroom.js';
 import Discount from './Discount.vue';
 import Modal from './Modal.vue';
+import Card from './Card.vue';
 
 export default {
   name : 'App',
@@ -41,7 +39,8 @@ export default {
   },
   components : {
     Discount,
-    Modal
+    Modal,
+    Card
   }
 }
 </script>
