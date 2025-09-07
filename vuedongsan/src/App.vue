@@ -4,6 +4,13 @@
     <a v-for="작명 in 메뉴들" :key="작명">{{ 작명 }}</a>
   </div>
 
+  <Discount/>
+
+  <button @click="priceSort">가격순정렬</button>
+  <button @click="priceSort_">가격역순 정렬</button>
+  <button @click="abcSort">사전순 정렬</button>
+  <button @click="sortBack">되돌리기</button>
+
   <transition name="fade">
     <Modal @closeModal="모달창열렸니=false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"/>
   </transition>
@@ -25,6 +32,7 @@ export default {
   name : 'App',
   data(){
     return {
+      원룸들오리지널 : [...data],
       원룸들 : data,
       모달창열렸니 : false,
       누른거 : 0,
@@ -37,6 +45,24 @@ export default {
   methods: {
     increase(i) {
       this.신고수[i] += 1;
+    },
+    priceSort(){
+      this.원룸들.sort(function(a, b) {
+        return a.price - b.price
+      })
+    },
+    priceSort_(){
+      this.원룸들.sort(function(a, b) {
+        return b.price - a.price
+      })
+    },
+    abcSort(){
+      this.원룸들.sort(function(a,b){
+        return a.title > b.title ? 1 : -1
+      })
+    },
+    sortBack(){
+      this.원룸들 = [...this.원룸들오리지널];
     }
   },
   components : {
