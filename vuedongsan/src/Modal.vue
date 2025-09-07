@@ -5,7 +5,7 @@
             <img :src="원룸들[누른거].image" style="width:100%">
             <p>{{ 원룸들[누른거].content }}</p>
             <p>{{ 원룸들[누른거].price }}원</p>
-            <!-- <button @click="모달창열렸니 = false">닫기</button> -->
+            <button @click="$emit('closeModal')">닫기</button>
         </div>
     </div>
 </template>
